@@ -51,4 +51,13 @@ public class Ingridient {
     public void setUnit(String unit) {
         this.unit=unit;
     }
+
+    @Override
+    public String toString() {
+        return "Ingridient{" +
+                "item='" + item + '\'' +
+                ", count=" + count +
+                ", unit='" + unit + '\'' +
+                '}';
+    }
 }
