@@ -8,7 +8,7 @@ public class Recept {
     private Integer id;
 
     private String name;
-    private Category category;
+    private CategoryRecept categoryRecept;
     private String description;
 
     private List <Ingridient> ingridients = new ArrayList <>();
@@ -29,12 +29,12 @@ public class Recept {
         this.name=name;
     }
 
-    public Category getCategory() {
-        return category;
+    public CategoryRecept getCategory() {
+        return categoryRecept;
     }
 
-    public void setCategory(Category category) {
-        this.category=category;
+    public void setCategory(CategoryRecept categoryRecept) {
+        this.categoryRecept=categoryRecept;
     }
 
     public String getDescription() {

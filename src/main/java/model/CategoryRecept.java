@@ -1,16 +1,16 @@
 package model;
 
-public class Category {
+public class CategoryRecept {
     private Integer id;
     private String name;
 
-    public static Category create(String name){
-        Category category = new Category();
-        category.setName(name);
-        return category;
+    public static CategoryRecept create(String name){
+        CategoryRecept categoryRecept= new CategoryRecept();
+        categoryRecept.setName(name);
+        return categoryRecept;
     }
 
-    private Category() {
+    private CategoryRecept() {
     }
 
     public Integer getId() {
