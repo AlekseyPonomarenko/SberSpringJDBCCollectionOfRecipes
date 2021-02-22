@@ -3,11 +3,12 @@ package model;
 public class Ingridient {
 
     private Integer id;
+    private Integer receptId;
     private String item;
-    private double count;
+    private Integer count;
     private String unit;
 
-    public static Ingridient create(String item, double count, String unit) {
+    public static Ingridient create(String item, Integer count, String unit) {
 
         Ingridient ingridient = new Ingridient();
         ingridient.setItem(item);
@@ -36,11 +37,11 @@ public class Ingridient {
         this.item=item;
     }
 
-    public double getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(double count) {
+    public void setCount(Integer count) {
         this.count=count;
     }
 
@@ -50,6 +51,15 @@ public class Ingridient {
 
     public void setUnit(String unit) {
         this.unit=unit;
+    }
+
+
+    public Integer getReceptId() {
+        return receptId;
+    }
+
+    public void setReceptId(Integer receptId) {
+        this.receptId=receptId;
     }
 
     @Override

@@ -4,6 +4,7 @@ import config.DataConfiguration;
 import dao.CategoryReceptDao;
 import dao.ReceptDao;
 import model.CategoryRecept;
+import model.Ingridient;
 import model.Recept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -18,6 +19,8 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class run {
 
@@ -45,11 +48,24 @@ public class run {
 
         receptDao = applicationContext.getBean(ReceptDao.class);
 
-       Recept  recept = new Recept();
-       // recept.setName("Африканский куриный суп");
-       // recept.setCategoryRecept(categoryRecept1);
-       // recept.setDescription("Большую часть горошка отварить до мягкости в курином бульоне и протереть через сито вместе с бульоном. Меньшую часть гороха оставить на ночь, обсушить.");
-       // recept = receptDao.createRecept(recept);
+
+        Recept recept=new Recept();
+        recept.setName("Африканский куриный суп");
+        recept.setCategoryRecept(categoryRecept1);
+        recept.setDescription("Большую часть горошка отварить до мягкости в курином бульоне и протереть через сито вместе с бульоном. Меньшую часть гороха оставить на ночь, обсушить.");
+
+        List <Ingridient> ingridients = new ArrayList();
+        ingridients.add(Ingridient.create("лук репчатый", 2, "шт"));
+        ingridients.add(Ingridient.create("масло сливочное", 3, "ст.л."));
+        ingridients.add(Ingridient.create("яблоко", 1, "шт."));
+        ingridients.add(Ingridient.create("порошок карри", 1, "ч.л."));
+        ingridients.add(Ingridient.create("мука", 1, "ст.л."));
+        ingridients.add(Ingridient.create("бульон куриный", 500, "мл"));
+        ingridients.add(Ingridient.create("горошек зеленый", 500, "г"));
+        ingridients.add(Ingridient.create("сливки", 1, "г"));
+        ingridients.add(Ingridient.create("соль, перец", 0, "по вкусу"));
+        recept.setIngridients(ingridients);
+        recept=receptDao.createRecept(recept);
 
 
 

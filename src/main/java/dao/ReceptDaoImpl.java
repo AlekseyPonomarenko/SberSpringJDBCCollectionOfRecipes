@@ -1,5 +1,6 @@
 package dao;
 
+import model.Ingridient;
 import model.Recept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -29,7 +30,6 @@ public class ReceptDaoImpl implements ReceptDao {
         this.parameterJdbcOperations = new NamedParameterJdbcTemplate(dataSource);
         this.insertOperations = new SimpleJdbcInsert(dataSource)
                 .withTableName("Recept")
-                .usingColumns("name, categoryReceptId, description")
                 .usingGeneratedKeyColumns("id");
     }
 
@@ -37,9 +37,16 @@ public class ReceptDaoImpl implements ReceptDao {
     public Recept createRecept(Recept recept) {
         Number returnKey = insertOperations.executeAndReturnKey(new BeanPropertySqlParameterSource(recept));
         recept.setId((Integer) returnKey);
+        //Чистим ингридиенты
+
+        //в цикле записываем каждый ингридиент
+
+        for (Ingridient ingridient: recept.getIngridients()){
+            ingridient.setReceptId(recept.getId());
+            //
+        }
+
         return recept;
     }
-
-
 
 }
