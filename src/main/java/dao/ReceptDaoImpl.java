@@ -1,6 +1,6 @@
 package dao;
 
-import model.CategoryRecept;
+import model.Recept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -8,13 +8,11 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsertOperations;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-@Component
-public class CategoryReceptDaoImpl implements CategoryReceptDao {
+public class ReceptDaoImpl implements ReceptDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -30,24 +28,18 @@ public class CategoryReceptDaoImpl implements CategoryReceptDao {
     public void init(){
         this.parameterJdbcOperations = new NamedParameterJdbcTemplate(dataSource);
         this.insertOperations = new SimpleJdbcInsert(dataSource)
-                .withTableName("CategoryRecept")
+                .withTableName("Recept")
+                .usingColumns("name, categoryReceptId, description")
                 .usingGeneratedKeyColumns("id");
     }
 
-    public CategoryReceptDaoImpl() {
-
-    }
-
     @Override
-    public CategoryRecept createCategoryRecept(CategoryRecept categoryRecept) {
-        Number returnKey = insertOperations.executeAndReturnKey(new BeanPropertySqlParameterSource(categoryRecept));
-        categoryRecept.setId((Integer) returnKey);
-        return categoryRecept;
+    public Recept createRecept(Recept recept) {
+        Number returnKey = insertOperations.executeAndReturnKey(new BeanPropertySqlParameterSource(recept));
+        recept.setId((Integer) returnKey);
+        return recept;
     }
 
-    @Override
-    public void showCategories() {
 
-    }
 
 }

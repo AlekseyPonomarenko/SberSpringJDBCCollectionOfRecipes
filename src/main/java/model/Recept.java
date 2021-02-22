@@ -6,10 +6,11 @@ import java.util.List;
 public class Recept {
 
     private Integer id;
-
     private String name;
-    private CategoryRecept categoryRecept;
+    private Integer categoryReceptId;
     private String description;
+
+    private CategoryRecept categoryRecept;
 
     private List <Ingridient> ingridients = new ArrayList <>();
 
@@ -29,12 +30,24 @@ public class Recept {
         this.name=name;
     }
 
-    public CategoryRecept getCategory() {
-        return categoryRecept;
+    public Integer getCategoryReceptId() {
+        return categoryReceptId;
     }
 
-    public void setCategory(CategoryRecept categoryRecept) {
+    public void setCategoryReceptId(Integer categoryReceptId) {
+        this.categoryReceptId=categoryReceptId;
+    }
+
+    public CategoryRecept getCategoryRecept() {
+        if (categoryRecept != null) {
+            return categoryRecept;
+        }
+        return  null;//по дао попробовать обратиться
+    }
+
+    public void setCategoryRecept(CategoryRecept categoryRecept) {
         this.categoryRecept=categoryRecept;
+        this.categoryReceptId = categoryRecept.getId();
     }
 
     public String getDescription() {

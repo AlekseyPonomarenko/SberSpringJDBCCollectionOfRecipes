@@ -2,7 +2,9 @@ package run;
 
 import config.DataConfiguration;
 import dao.CategoryReceptDao;
+import dao.ReceptDao;
 import model.CategoryRecept;
+import model.Recept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -23,6 +25,7 @@ public class run {
 
 
     public CategoryReceptDao categoryReceptDao;
+    public ReceptDao receptDao;
 
 
     public static void main(String args[]) throws SQLException, ClassNotFoundException {
@@ -34,13 +37,19 @@ public class run {
     public void  demo(){
 
         categoryReceptDao = applicationContext.getBean(CategoryReceptDao.class);
-        categoryReceptDao.createCategoryRecept(CategoryRecept.create("Первые блюда"));
-        categoryReceptDao.createCategoryRecept(CategoryRecept.create("Вторые блюда"));
-        categoryReceptDao.createCategoryRecept(CategoryRecept.create("Напитки"));
-        categoryReceptDao.createCategoryRecept(CategoryRecept.create("Салаты"));
-        categoryReceptDao.createCategoryRecept(CategoryRecept.create("Десерты, сладкие блюда"));
+        CategoryRecept categoryRecept1 = categoryReceptDao.createCategoryRecept(CategoryRecept.create("Первые блюда"));
+        CategoryRecept categoryRecept2 = categoryReceptDao.createCategoryRecept(CategoryRecept.create("Вторые блюда"));
+        CategoryRecept categoryRecept3 = categoryReceptDao.createCategoryRecept(CategoryRecept.create("Напитки"));
+        CategoryRecept categoryRecept4 = categoryReceptDao.createCategoryRecept(CategoryRecept.create("Салаты"));
+        CategoryRecept categoryRecept5 = categoryReceptDao.createCategoryRecept(CategoryRecept.create("Десерты, сладкие блюда"));
 
+        receptDao = applicationContext.getBean(ReceptDao.class);
 
+       Recept  recept = new Recept();
+       // recept.setName("Африканский куриный суп");
+       // recept.setCategoryRecept(categoryRecept1);
+       // recept.setDescription("Большую часть горошка отварить до мягкости в курином бульоне и протереть через сито вместе с бульоном. Меньшую часть гороха оставить на ночь, обсушить.");
+       // recept = receptDao.createRecept(recept);
 
 
 
