@@ -37,8 +37,8 @@ public class IngridientDaoImpl implements IngridientDao {
     @Override
     public Ingridient createIngridient(Ingridient ingridient) {
 
-        Number returnKey = insertOperations.executeAndReturnKey(new BeanPropertySqlParameterSource(ingridient));
-       ingridient.setId((Integer) returnKey);
+        Number returnKey=insertOperations.executeAndReturnKey(new BeanPropertySqlParameterSource(ingridient));
+        ingridient.setId((Integer) returnKey);
         return ingridient;
 
     }

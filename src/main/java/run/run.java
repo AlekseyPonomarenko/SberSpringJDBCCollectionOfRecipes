@@ -40,14 +40,9 @@ public class run {
 
         categoryReceptDao = applicationContext.getBean(CategoryReceptDao.class);
         receptDao = applicationContext.getBean(ReceptDao.class);
-        new FillDemo().fillDemo(categoryReceptDao, receptDao);
-
-
-
-
+        //new FillDemo().fillDemo(categoryReceptDao, receptDao);
+        categoryReceptDao.showCategories();
+        receptDao.showAllRecept();
     }
-
-
-
 
 }

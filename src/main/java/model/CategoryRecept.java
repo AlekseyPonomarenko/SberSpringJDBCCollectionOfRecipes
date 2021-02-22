@@ -31,8 +31,9 @@ public class CategoryRecept {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "name='" + name + '\'' +
+        return "CategoryRecept {" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

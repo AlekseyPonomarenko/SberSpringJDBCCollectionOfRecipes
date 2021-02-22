@@ -3,6 +3,7 @@ package dao;
 import model.CategoryRecept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.util.List;
 
 @Component
 public class CategoryReceptDaoImpl implements CategoryReceptDao {
@@ -26,12 +28,23 @@ public class CategoryReceptDaoImpl implements CategoryReceptDao {
 
     private NamedParameterJdbcOperations parameterJdbcOperations;
 
+    private RowMapper <CategoryRecept> categoryReceptRowMapper;
+
+
     @PostConstruct
-    public void init(){
-        this.parameterJdbcOperations = new NamedParameterJdbcTemplate(dataSource);
-        this.insertOperations = new SimpleJdbcInsert(dataSource)
+    public void init() {
+
+        this.parameterJdbcOperations=new NamedParameterJdbcTemplate(dataSource);
+        this.insertOperations=new SimpleJdbcInsert(dataSource)
                 .withTableName("CategoryRecept")
                 .usingGeneratedKeyColumns("id");
+
+        this.categoryReceptRowMapper=(resultSet, i) -> {
+            CategoryRecept categoryRecept=CategoryRecept.create(resultSet.getString("name"));
+            categoryRecept.setId(resultSet.getInt("id"));
+            return categoryRecept;
+        };
+
     }
 
     public CategoryReceptDaoImpl() {
@@ -45,9 +58,15 @@ public class CategoryReceptDaoImpl implements CategoryReceptDao {
         return categoryRecept;
     }
 
+
+    @Override
+    public List <CategoryRecept> getAllCategoryRecept() {
+        return parameterJdbcOperations.query("select * from CategoryRecept", this.categoryReceptRowMapper);
+    }
+
     @Override
     public void showCategories() {
-
+       getAllCategoryRecept().forEach(System.out::println);
     }
 
 }

@@ -1,7 +1,7 @@
 
-drop table IF EXISTS CATEGORYRECEPT;
-drop table IF EXISTS RECEPT;
-drop table IF EXISTS INGRIDIENT;
+--drop table IF EXISTS CATEGORYRECEPT;
+--drop table IF EXISTS RECEPT;
+--drop table IF EXISTS INGRIDIENT;
 
 create table if not exists CATEGORYRECEPT (
     'id' INTEGER PRIMARY KEY AUTOINCREMENT,

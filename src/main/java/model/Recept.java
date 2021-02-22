@@ -74,4 +74,13 @@ public class Recept {
     public void setIngridients(List <Ingridient> ingridients) {
         this.ingridients=ingridients;
     }
+
+    @Override
+    public String toString() {
+        return "Recept{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", categoryRecept=" + categoryRecept.getName() +
+                '}';
+    }
 }
