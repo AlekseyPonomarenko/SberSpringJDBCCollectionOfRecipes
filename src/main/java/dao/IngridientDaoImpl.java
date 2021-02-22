@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 @Component
-public class ReceptDaoImpl implements ReceptDao {
+public class IngridientDaoImpl implements IngridientDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -23,35 +23,26 @@ public class ReceptDaoImpl implements ReceptDao {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    private IngridientDao ingridientDao;
-
     private SimpleJdbcInsertOperations insertOperations;
-
     private NamedParameterJdbcOperations parameterJdbcOperations;
 
     @PostConstruct
     public void init(){
         this.parameterJdbcOperations = new NamedParameterJdbcTemplate(dataSource);
         this.insertOperations = new SimpleJdbcInsert(dataSource)
-                .withTableName("Recept")
+                .withTableName("Ingridient")
                 .usingGeneratedKeyColumns("id");
     }
 
     @Override
-    public Recept createRecept(Recept recept) {
-        Number returnKey = insertOperations.executeAndReturnKey(new BeanPropertySqlParameterSource(recept));
-        recept.setId((Integer) returnKey);
-        //Чистим ингридиенты
+    public Ingridient createIngridient(Ingridient ingridient) {
 
-        //в цикле записываем каждый ингридиент
+        Number returnKey = insertOperations.executeAndReturnKey(new BeanPropertySqlParameterSource(ingridient));
+       ingridient.setId((Integer) returnKey);
+        return ingridient;
 
-        for (Ingridient ingridient: recept.getIngridients()){
-            ingridient.setReceptId(recept.getId());
-            ingridientDao.createIngridient(ingridient);
-        }
-
-        return recept;
     }
+
+
 
 }

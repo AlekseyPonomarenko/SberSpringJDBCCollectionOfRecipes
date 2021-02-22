@@ -1,9 +1,6 @@
 package config;
 
-import dao.CategoryReceptDao;
-import dao.CategoryReceptDaoImpl;
-import dao.ReceptDao;
-import dao.ReceptDaoImpl;
+import dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -62,6 +59,11 @@ public class DataConfiguration {
     @Bean
     public ReceptDao receptDao() {
         return new ReceptDaoImpl();
+    }
+
+    @Bean
+    public IngridientDao ingridientDao() {
+        return new IngridientDaoImpl();
     }
 
     @PostConstruct

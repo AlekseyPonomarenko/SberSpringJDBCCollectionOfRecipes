@@ -12,6 +12,15 @@ public class Recept {
 
     private CategoryRecept categoryRecept;
 
+    public static Recept receptCreate(CategoryRecept categoryRecept, String name, String description){
+        Recept recept = new Recept();
+        recept.setCategoryRecept(categoryRecept);
+        recept.setName(name);
+        recept.setDescription(description);
+        return recept;
+    }
+
+
     private List <Ingridient> ingridients = new ArrayList <>();
 
     public Integer getId() {
