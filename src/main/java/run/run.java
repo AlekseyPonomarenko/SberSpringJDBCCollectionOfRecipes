@@ -33,7 +33,6 @@ public class run {
 
     public static void main(String args[]) throws SQLException, ClassNotFoundException {
         applicationContext = new AnnotationConfigApplicationContext(DataConfiguration.class);
-
         new run().demo();
     }
 
@@ -42,6 +41,9 @@ public class run {
         categoryReceptDao = applicationContext.getBean(CategoryReceptDao.class);
         receptDao = applicationContext.getBean(ReceptDao.class);
         new FillDemo().fillDemo(categoryReceptDao, receptDao);
+
+
+
 
     }
 

@@ -40,17 +40,18 @@ public class ReceptDaoImpl implements ReceptDao {
 
     @Override
     public Recept createRecept(Recept recept) {
+
         Number returnKey = insertOperations.executeAndReturnKey(new BeanPropertySqlParameterSource(recept));
         recept.setId((Integer) returnKey);
+
         //Чистим ингридиенты
+        jdbcTemplate.update("DELETE FROM Ingridient WHERE receptId = ?", new Object[] {recept.getId()});
 
         //в цикле записываем каждый ингридиент
-
         for (Ingridient ingridient: recept.getIngridients()){
             ingridient.setReceptId(recept.getId());
             ingridientDao.createIngridient(ingridient);
         }
-
         return recept;
     }
 
