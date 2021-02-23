@@ -83,4 +83,6 @@ public class Recept {
                 ", categoryRecept=" + categoryRecept.getName() +
                 '}';
     }
+
+
 }

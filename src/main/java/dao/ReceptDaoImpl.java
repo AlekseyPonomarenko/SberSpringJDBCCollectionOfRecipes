@@ -86,4 +86,17 @@ public class ReceptDaoImpl implements ReceptDao {
     public void showAllRecept() {
         getAllRecept().forEach(System.out::println);
     }
+
+    public void showFullRecept(Recept recept) {
+
+        System.out.println("Recept {" +
+                "id=" + recept.getId() +
+                ", name='" + recept.getName() + '\'' +
+                ", categoryRecept=" + recept.getCategoryRecept().getName() +
+                '}');
+
+        recept.setIngridients(ingridientDao.getIngridientList(recept));
+        recept.getIngridients().forEach(System.out::println);
+    }
+
 }

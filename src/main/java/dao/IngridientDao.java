@@ -11,7 +11,9 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsertOperations;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.util.List;
 
 public interface IngridientDao {
     Ingridient createIngridient(Ingridient ingridient);
+    public List <Ingridient> getIngridientList(Recept recept);
 }

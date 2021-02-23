@@ -10,5 +10,5 @@ public interface ReceptDao {
     Recept createRecept(Recept recept);
     public List <Recept> getAllRecept();
     void showAllRecept();
-
+    void showFullRecept(Recept recept);
 }

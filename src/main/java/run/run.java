@@ -41,8 +41,14 @@ public class run {
         categoryReceptDao = applicationContext.getBean(CategoryReceptDao.class);
         receptDao = applicationContext.getBean(ReceptDao.class);
         //new FillDemo().fillDemo(categoryReceptDao, receptDao);
+
+        System.out.println("\n************************** Категории ***********************************");
         categoryReceptDao.showCategories();
+        System.out.println("\n********************** Список рецептов *********************************");
         receptDao.showAllRecept();
+
+        System.out.println("\n************************ Полный рецепт *********************************");
+        receptDao.showFullRecept(receptDao.getAllRecept().get(0));
     }
 
 }
